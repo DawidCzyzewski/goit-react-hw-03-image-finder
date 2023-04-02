@@ -1,0 +1,1 @@
+// Po naciśnięciu przycisku Load more powinna ładować się kolejna porcja obrazków i renderować się razem z poprzednimi. Przycisk powinien renderować się tylko wtedy, gdy istnieje jakieś obrazek do wyświetlenia. Jeśli tablica obrazków jest pusta, przycisk nie renderuje się.
