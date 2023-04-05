@@ -131,9 +131,10 @@ export class App extends Component {
     this.setState({
       // biggerImgUrl: event.target.dataset.bigger,
       biggerImgUrl: bigUrl,
-
       tags: event.target.alt,
     });
+
+    this.openModal();
     // console.log(this.state);
   };
 
@@ -151,6 +152,7 @@ export class App extends Component {
           bigPhotoUrl={this.state.biggerImgUrl}
           closeModal={this.closeModal}
           tags={this.state.tags}
+          isModalVisable={this.state.isModalVisable}
         />
       </div>
     );

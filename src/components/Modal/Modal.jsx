@@ -4,15 +4,17 @@ export class Modal extends Component {
   render() {
     console.log(this.props.bigPhotoUrl);
 
-    const { bigPhotoUrl, closeModal } = this.props;
+    const { bigPhotoUrl, tags, closeModal, isModalVisable } = this.props;
     return (
-      <>
-        <div>
+      isModalVisable && (
+        <>
           <div>
-            <img src={bigPhotoUrl} alt="" />
+            <div>
+              <img src={bigPhotoUrl} alt={tags} onClick={closeModal} />
+            </div>
           </div>
-        </div>
-      </>
+        </>
+      )
     );
   }
 }
