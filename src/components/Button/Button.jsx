@@ -1,1 +1,15 @@
-// Po naciśnięciu przycisku Load more powinna ładować się kolejna porcja obrazków i renderować się razem z poprzednimi. Przycisk powinien renderować się tylko wtedy, gdy istnieje jakieś obrazek do wyświetlenia. Jeśli tablica obrazków jest pusta, przycisk nie renderuje się.
+import { Component } from 'react';
+
+export class Button extends Component {
+  render() {
+    const { nextPage, searchForMore, images, totalHits, actualPage } =
+      this.props;
+    return (
+      <>
+        {searchForMore && images.length > 0 ? (
+          <button onClick={nextPage}>Load more</button>
+        ) : null}
+      </>
+    );
+  }
+}

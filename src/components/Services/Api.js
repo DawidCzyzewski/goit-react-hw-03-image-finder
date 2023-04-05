@@ -23,6 +23,6 @@ export const fetchImages = async (searchedText, actualPage = initialPage) => {
     return response;
   } catch (error) {
     console.log('Ups! We got a problem with Api: ', error);
-    alert();
+    alert('Look in console!');
   }
 };
