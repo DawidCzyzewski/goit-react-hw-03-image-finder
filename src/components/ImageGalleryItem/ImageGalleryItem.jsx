@@ -1,10 +1,8 @@
-// Komponent elementu listy z obrazkami. Tworzy element DOM o następującej strukturze:
-
 import { Component } from 'react';
 
 export class ImageGalleryItem extends Component {
   render() {
-    const { images, getInfoAbout } = this.props;
+    const { images, getInfoAbout, openModal } = this.props;
     // console.log(images);
     return (
       <>
@@ -16,7 +14,9 @@ export class ImageGalleryItem extends Component {
                 src={previewUrl}
                 alt={tags}
                 data-bigger={biggerImg}
-                onClick={getInfoAbout}
+                onClick={event => {
+                  getInfoAbout(event);
+                }}
               />
             </li>
           );
