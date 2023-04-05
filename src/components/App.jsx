@@ -122,20 +122,36 @@ export class App extends Component {
 
   // TODO: why not working link? I can't put it in state to use later to modal
   // Getting info about clicked image, need for example to modal (bigger photo url)
+  // getInfoAbout = event => {
+  //   console.log(event.target.dataset.bigger);
+  //   const bigUrl = event.target.dataset.bigger;
+  //   console.log(typeof bigUrl);
+  //   console.log(bigUrl);
+
+  //   this.setState({
+  //     // biggerImgUrl: event.target.dataset.bigger,
+  //     biggerImgUrl: bigUrl,
+  //     tags: event.target.alt,
+  //   });
+
+  //   this.openModal();
+  //   // console.log(this.state);
+  // };
+
   getInfoAbout = event => {
-    console.log(event.target.dataset.bigger);
-    const bigUrl = event.target.dataset.bigger;
+    console.log(event.currentTarget.dataset.bigger);
+    const bigUrl = event.currentTarget.dataset.bigger;
     console.log(typeof bigUrl);
     console.log(bigUrl);
 
     this.setState({
       // biggerImgUrl: event.target.dataset.bigger,
       biggerImgUrl: bigUrl,
-      tags: event.target.alt,
+      tags: event.currentTarget.alt,
     });
 
     this.openModal();
-    // console.log(this.state);
+    console.log(this.state);
   };
 
   render() {
