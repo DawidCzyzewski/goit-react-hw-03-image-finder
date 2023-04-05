@@ -1,17 +1,28 @@
 // Komponent przyjmuje jeden props onSubmit - funkcję dla przekazania wartości input przy submicie formularza. Tworzy element DOM o następującej strukturze:
 
-<header class="searchbar">
-  <form class="form">
-    <button type="submit" class="button">
-      <span class="button-label">Search</span>
-    </button>
+import { Component } from 'react';
 
-    <input
-      class="input"
-      type="text"
-      autocomplete="off"
-      autofocus
-      placeholder="Search images and photos"
-    />
-  </form>
-</header>;
+export class Searchbar extends Component {
+  render() {
+    // console.log('this.props in searchbar: ', this.props);
+
+    const { whenSubmit } = this.props;
+
+    return (
+      <header>
+        <form onSubmit={whenSubmit}>
+          <button type="submit">
+            <span>Search</span>
+          </button>
+          <input
+            name="searchedText"
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+          />
+        </form>
+      </header>
+    );
+  }
+}

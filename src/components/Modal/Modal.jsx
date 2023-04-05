@@ -1,9 +1,18 @@
-// Po kliknięciu na element galerii powinno otwierać się okno modalne z ciemnym tłem i wyświetlać się duża wersja obrazka. Okno modalne powinno zamykać się po naciśnięciu klawisza ESC lub po kliknięciu na tło.
+import { Component } from 'react';
 
-// Wygląd podobny jest do tej funkcjonalności VanillaJS-плагина, ale zamiast białego okna modalnego renderuje się obrazek (kliknij na przykład Run). Nie trzeba tworzyć animacji.
+export class Modal extends Component {
+  render() {
+    console.log(this.props.bigPhotoUrl);
 
-<div class="overlay">
-  <div class="modal">
-    <img src="" alt="" />
-  </div>
-</div>;
+    const { bigPhotoUrl, closeModal } = this.props;
+    return (
+      <>
+        <div>
+          <div>
+            <img src={bigPhotoUrl} alt="" />
+          </div>
+        </div>
+      </>
+    );
+  }
+}

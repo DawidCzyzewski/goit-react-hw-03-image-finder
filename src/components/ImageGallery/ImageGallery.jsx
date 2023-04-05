@@ -1,3 +1,10 @@
-// Lista obrazków. Tworzy element DOM o następującej strukturze:
+import { Component } from 'react';
 
-<ul class="gallery">{/* <!-- Zbiór <li> z obrazami --> */}</ul>;
+export class ImageGallery extends Component {
+  render() {
+    const { children, closeModal } = this.props;
+
+    // console.log(this.props);
+    return <ul onClick={closeModal}>{children}</ul>;
+  }
+}
