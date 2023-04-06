@@ -1,4 +1,5 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 
@@ -25,4 +26,9 @@ export const fetchImages = async (searchedText, actualPage = initialPage) => {
     console.log('Ups! We got a problem with Api: ', error);
     alert('Look in console!');
   }
+};
+
+fetchImages.PropTypes = {
+  searchedText: PropTypes.string.isRequired,
+  actualPage: PropTypes.number,
 };

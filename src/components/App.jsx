@@ -7,8 +7,19 @@ import { Button } from './Button/Button';
 
 import { Component } from 'react';
 import { BallTriangle } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
+  static propTypes = {
+    images: PropTypes.array,
+    actualPage: PropTypes.number,
+    searchedText: PropTypes.string,
+    biggerImgUrl: PropTypes.string,
+    isModalVisable: PropTypes.bool,
+    isLoading: PropTypes.bool,
+    searchForMore: PropTypes.bool,
+  };
+
   state = {
     images: [],
     actualPage: 1,
@@ -36,11 +47,9 @@ export class App extends Component {
     this.setState({ [inputName]: searchedPhrase });
   };
 
-  // clearing previous data
   clearState = () => {
     this.setState({
       images: [],
-      actualPage: 1,
     });
   };
 
@@ -74,10 +83,7 @@ export class App extends Component {
         };
       });
 
-      if (response.data.totalHits <= 12) {
-        this.setState({ searchForMore: false });
-        return;
-      } else if (response.data.hits.length < 12) {
+      if (response.data.hits.length < 12) {
         this.setState({ searchForMore: false });
         return;
       } else {
@@ -86,17 +92,15 @@ export class App extends Component {
     }
   }
 
-  changePage = () => {
+  changePage = event => {
+    event.preventDefault();
     this.setState(prevState => ({
       actualPage: prevState.actualPage + 1,
     }));
   };
 
-  // Getting info about clicked image, need for example to modal (bigger photo url)
   getInfoAbout = event => {
-    event.stopPropagation();
     const bigUrl = event.currentTarget.dataset.bigger;
-
     this.openModal(bigUrl);
   };
 
@@ -105,7 +109,17 @@ export class App extends Component {
       <div>
         <Searchbar whenSubmit={this.handleSubmit} />
         {this.state.isLoading && <BallTriangle />}
-        <ImageGallery closeModal={this.closeModal}>
+        <Button
+          searchForMore={this.state.searchForMore}
+          nextPage={this.changePage}
+          images={this.state.images}
+          actualPage={this.state.actualPage}
+        />
+        <ImageGallery
+          closeModal={this.closeModal}
+          close={this.closeModal}
+          isModalVisable={this.state.isModalVisable}
+        >
           <ImageGalleryItem
             images={this.state.images}
             getInfoAbout={this.getInfoAbout}
@@ -181,7 +195,6 @@ export class App extends Component {
 //   clearState = () => {
 //     this.setState({
 //       images: [],
-//       actualPage: 1,
 //     });
 //   };
 
@@ -224,14 +237,15 @@ export class App extends Component {
 
 //       // console.log('response in App: ', response);
 
-//       if (response.data.totalHits <= 12) {
-//         this.setState({ searchForMore: false });
-//         // console.log(
-//         //   'response.data.hits.length <= 12, SearchForMore should be false: ',
-//         //   this.state.searchForMore
-//         // );
-//         return;
-//       } else if (response.data.hits.length < 12) {
+//       // if (response.data.totalHits <= 12) {
+//       //   this.setState({ searchForMore: false });
+//       //   // console.log(
+//       //   //   'response.data.hits.length <= 12, SearchForMore should be false: ',
+//       //   //   this.state.searchForMore
+//       //   // );
+//       //   return;
+//       // } else
+//       if (response.data.hits.length < 12) {
 //         this.setState({ searchForMore: false });
 //         // console.log(
 //         //   'response.data.hits.length <= 12, SearchForMore should be false: ',
@@ -248,7 +262,9 @@ export class App extends Component {
 //     }
 //   }
 
-//   changePage = () => {
+//   changePage = event => {
+//     // this.clearState();
+//     event.preventDefault();
 //     this.setState(prevState => ({
 //       actualPage: prevState.actualPage + 1,
 //     }));
@@ -271,7 +287,16 @@ export class App extends Component {
 //       <div>
 //         <Searchbar whenSubmit={this.handleSubmit} />
 //         {this.state.isLoading && <BallTriangle />}
-//         <ImageGallery closeModal={this.closeModal}>
+//         <Button
+//           searchForMore={this.state.searchForMore}
+//           nextPage={this.changePage}
+//           images={this.state.images}
+//           actualPage={this.state.actualPage}
+//         />
+//         <ImageGallery
+//           closeModal={this.closeModal}
+//           close={this.closeModal}
+//           isModalVisable={this.state.isModalVisable}>
 //           <ImageGalleryItem
 //             images={this.state.images}
 //             getInfoAbout={this.getInfoAbout}
