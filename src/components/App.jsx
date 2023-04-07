@@ -34,8 +34,11 @@ export class App extends Component {
     this.setState({ isModalVisable: true, biggerImgUrl: bigUrl });
   };
 
-  closeModal = () => {
-    this.setState({ isModalVisable: false, biggerImgUrl: '' });
+  closeModal = elem => {
+    console.log(elem);
+    if (elem.target.nodeName !== 'IMG' || elem.key === 'Escape') {
+      this.setState({ isModalVisable: false, biggerImgUrl: '' });
+    }
   };
 
   handleSubmit = event => {
@@ -106,7 +109,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
+      <div onClick={this.closeModal}>
         <Searchbar whenSubmit={this.handleSubmit} />
         {this.state.isLoading && <BallTriangle />}
         <Button

@@ -10,12 +10,20 @@ export class Modal extends Component {
     isModalVisable: PropTypes.bool.isRequired,
   };
 
+  componentDidMount() {
+    window.addEventListener('keydown', this.props.closeModal);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.props.closeModal);
+  }
+
   render() {
     const { bigPhotoUrl, tags, closeModal, isModalVisable } = this.props;
 
     return (
       isModalVisable && (
-        <div>
+        <div className={styles.background}>
           <img
             className={styles.modal}
             src={bigPhotoUrl}
