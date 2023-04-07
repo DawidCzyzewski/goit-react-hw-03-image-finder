@@ -35,7 +35,7 @@ export class App extends Component {
   };
 
   closeModal = elem => {
-    console.log(elem);
+    // console.log(elem);
     if (elem.target.nodeName !== 'IMG' || elem.key === 'Escape') {
       this.setState({ isModalVisable: false, biggerImgUrl: '' });
     }
