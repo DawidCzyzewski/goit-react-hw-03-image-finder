@@ -63,7 +63,7 @@ export class App extends Component {
     ) {
       this.setState({ isLoading: true });
 
-      this.clearState();
+      // this.clearState();
 
       const response = await fetchImages(
         this.state.searchedText,
